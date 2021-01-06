@@ -1,15 +1,25 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  root to: "jobs#show"
-
+  root to: "sessions#home"
   get '/signup' => 'users#new'
-  post '/signup' => 'users#create'
-
+  
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
+  delete '/logout' => 'sessions#destroy'
 
-  
+  resources :users
+  resources :jobs
+
+  resources :jobs do
+    resources :reviews
+  end
+
+  resources :users do 
+    resources :jobs, shallow: true
+  end
+  resources :categories, only: [:index, :show]
+
 end
 
 

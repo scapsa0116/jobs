@@ -1,0 +1,35 @@
+<h3>job new.html</h3>
+<h1>Build Job</h1>
+
+<%= form_for(@job) do |f| %>
+
+    <%= f.label "Choose a Category" %>
+    <%= f.collection_select  :category_id, Category.all, :id, :name, include_blank: true%>
+
+
+    <p>Or create a new category:
+    <%= f.fields_for :category do |c| %>
+        <%= c.text_field :name %>
+        <% end %>
+    </p>
+
+    <br>
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "Company Name" %>
+    <br><br>
+    <%= f.label :service %>
+    <%= f.text_field :service , placeholder: "Offered services"%>
+    <br><br>
+    <%= f.label :adress %>
+    <%= f.text_field :adress, placeholder: "Adress" %>
+    <br><br>
+    <%= f.label :phone %>
+    <%= f.text_field :phone, placeholder: "+1 XXX-XXX-XXXX" %>
+    <br><br>
+    <%= f.label :email %>
+    <%= f.text_field :email, placeholder: "Email" %>
+    <br><br>
+
+    <%= f.submit %>
+
+    <% end %>

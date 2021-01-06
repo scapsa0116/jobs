@@ -1,0 +1,14 @@
+hmoe.html
+
+<h1>CallMe</h1>
+<h2>Here you can find multiple services, offer your Job to our comunity.</h>
+<br><br>
+<% if logged_in? %>
+<%= link_to "All Categories", categories_path %> |
+<%= link_to "Home", user_path(current_user)%> |
+    <% else %>
+<%= link_to "Sign up", signup_path %>
+<br><br>
+<%= link_to "Log in", "/signin"%>
+
+    <% end %>

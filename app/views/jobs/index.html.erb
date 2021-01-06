@@ -1,0 +1,6 @@
+index/job
+All reviews
+
+<% current_user.jobs.each do |j| %>
+    <%= j.title %>
+    <% end %>
