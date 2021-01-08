@@ -11,26 +11,18 @@ Search
     <% end %>
 
 
-    <table>
-
-    <thead>
-    <tr>
-    <th>Name</th>
-    
-    
-    </tr>
-    </thead>
+    <h1>Name</h1>
     
 
 
-    <tbody>
-    <% @categories.each do |c| %>
-        <tr>
-        <td><%= link_to c.name, jobs_path %>
-        </tr>       
-    <% end %>
+    <ul>
+  <% @categories.each do |category| %>
+    <li>
+      <%= link_to category.name, category_path(category) %>
+      
+    </li>
+  <% end %>
+</ul>
 
-   
-    </tbody>
     </table>
     

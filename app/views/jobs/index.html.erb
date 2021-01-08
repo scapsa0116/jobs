@@ -1,13 +1,15 @@
 index/job
-jobs indx
 
-<% @jobs.each do |j| %>
-    <li>Company Name:   <%= j.title %></li>
-    <li>Company Service:   <%= j.service %></li>
-    <li>Category:   <%= j.category.name %></li>
-    <li>Company Adress:   <%= j.adress %></li>
-    <li>Company Phone Number:   <%= j.phone %></li>
-    <li>Company Email:   <%= j.email %></li>
+<ol>
+<% @jobs.each do |job| %>
+    <li>Company Name:   <%= job.title %></li>
+    <li>Company Service:   <%= job.service %></li>
+    <li>Category:   <%= job.category.name %></li>
+    <li>Company Adress:   <%= job.adress %></li>
+    <li>Company Phone Number:   <%= job.phone %></li>
+    <li>Company Email:   <%= job.email %></li>
+    <li><%= link_to "Edit", edit_job_path(job) %></li>
+    </ol>
     <br><br>
     
 

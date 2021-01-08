@@ -10,10 +10,15 @@ def index
     end
 end
 
-    def new 
-        @job = Job.find_by_id(params[:job_id])
-        @review = @job.reviews.build
+def new
+    if params[:job_id] && @job = Job.find(params[:job_id])
+        @review = @job.review.build 
+        
+    else
+        @error = "this job service doesn't exist" if params[:job_id]
+        @review = Review.new
     end
+end
 
     def create
         @job = Job.find_by_id(params[:job_id])
