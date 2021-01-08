@@ -1,6 +1,14 @@
 index/job
-All reviews
+jobs indx
 
-<% current_user.jobs.each do |j| %>
-    <%= j.title %>
+<% @jobs.each do |j| %>
+    <li>Company Name:   <%= j.title %></li>
+    <li>Company Service:   <%= j.service %></li>
+    <li>Category:   <%= j.category.name %></li>
+    <li>Company Adress:   <%= j.adress %></li>
+    <li>Company Phone Number:   <%= j.phone %></li>
+    <li>Company Email:   <%= j.email %></li>
+    <br><br>
+    
+
     <% end %>

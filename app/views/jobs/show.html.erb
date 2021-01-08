@@ -1,15 +1,32 @@
-<h3> show.html</h3>
+<h3>  job.show.html</h3>
 
 
-<h1>Results<h1>
+<h1>Your post was succesufuly created<h1>
 
-<table>
-<tr>
-<th>title</th>
-<th>service</th>
-<th>adress</th>
-<th>phone</th>
-<th>email</th>
-<th></th>
-<th></th>
-</tr>
+<h1><%= @job.title %></h1>
+<h2><%= @job.user.username %></h2>
+<h2>By: <%=link_to @job.user.username, user_path(@job.user)%> </h2>
+
+
+<h3>Category: <%= @job.category.try(:name)%></h3>
+<% if @job.user == current_user %>
+<h4><%= link_to "Edit Service", edit_job_path(@job)%></h4>
+<% end %>
+
+<div><%= @job.service %></div>
+
+
+<p><%= link_to 'Add a new Review', new_job_review_path(@job) %></p>
+
+
+<% if !@job.reviews.empty? %>
+<p><%= link_to 'See all reviews', job_reviewss_path(@job)%></p>
+<h4>Most Recent Comments:</h4>
+<% @job.reviews.order(update_at: :desc).limit(4).each do |c| %>
+    <li>
+<strong><%= c.user.username %></strong> "<%= link_to c.description, job_review_path(@job, c) %>" at <%= c.updated_at.strftime("%I:%M %p on %m/%d/%Y") %>
+</li>
+<% end %>
+<% end %>
+
+

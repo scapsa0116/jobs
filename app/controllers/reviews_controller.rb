@@ -8,6 +8,7 @@ def index
     else
         redirect_to jobs_path
     end
+end
 
     def new 
         @job = Job.find_by_id(params[:job_id])

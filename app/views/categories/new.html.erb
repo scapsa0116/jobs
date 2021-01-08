@@ -1,0 +1,9 @@
+<%= form_for [@job, @category] do |f|%>
+    <%= f.hidden_field :job_id%>
+    <div>
+      <%= f.label :name%>
+      <%= f.text_area :name%>
+    </div>    
+    <br>
+    <%= f.submit %>
+  <% end %>

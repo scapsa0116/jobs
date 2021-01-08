@@ -1,0 +1,29 @@
+job edit
+
+<h1>Edit <%= @job.title%>!</h1>
+
+<%= render partial: "layouts/errors", locals: {object: @job} %>
+
+<%= form_for(@job) do |f|%>
+
+  <%= f.label "Choose a category:" %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
+
+  <p>Or create a new category:
+  <%= f.fields_for :category do |c|%>
+    <%= c.text_field :name%>
+  <% end %>
+  </p>
+
+
+<%= f.label :title %>
+<%= f.text_field :title, placeholder: "Company Name" %><br><br>
+<%= f.label :service %>
+<%= f.text_field :servive, placeholder: "Service"%><br><br>
+<%= f.label :phone %>
+<%= f.number_field :phone, placeholder: "Phone Number" %><br><br>
+<%= f.label :email %>
+<%= f.email_field :email, placeholder: "Busness Email" %><br><br>
+
+<%= f.submit "Submit" %>
+<% end %>

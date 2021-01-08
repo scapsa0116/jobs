@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 10.times do
-      Jobs.create([{
+      Job.create([{
 email: Faker::Internet.email,
 phone: Faker::PhoneNumber.phone_number,
 adress: Faker::Address.street_address,
@@ -16,13 +16,29 @@ service: Faker::Company.industry,
     }])
 end
 
-10.times do 
-    Cities.create([{
-        name: Faker::Address.city,
-    }])
+# 10.times do 
+#     City.create([{
+#         name: Faker::Address.city,
+#     }])
 
-end
+# end
     
     
+Category.create([
+{name: "Driver"},
+{name: "Loyer"},
+{name: "Industry"},
+{name: "Inginer"},
+{name: "Teacher"},
+{name: "Agricultor"},
+{name: "Finance and Economics"},
+{name: "Tax return"},
+{name: "Bartender"},
+{name: "Seller"},
+{name: "Software Development"},
+{name: "Consultant"},
+{name: "Suplier"},
+{name: "Others"},
 
+])
     
