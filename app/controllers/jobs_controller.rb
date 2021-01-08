@@ -18,19 +18,18 @@ class JobsController < ApplicationController
   #   @jobs = job.where(["category LIKE ?","%#{params[:search]}"])
   # end
 
-  def show 
-    @job = Job.find_by_id(params[:id])
-    redirect_to jobs_path if !@job
-  end
-
+  
 
   def new
+    
     if params[:user_id] && @user = User.find_by_id(params[:user_id])
         @job = @user.jobs.build
     else
-    @job = Job.new
+        @job = Job.new
     end
-    @job.build_category 
+    # binding.pry
+       @job.build_category 
+       
 end
 
 
@@ -54,7 +53,7 @@ end
     end
     
     def update
-         @job = Job.find_by_id(id: params[:id])
+         @job = Job.find_by(id: params[:id])
          redirect_to jobs_path if !@job || @job.user != current_user
         if @job.update(job_params)
           redirect_to job_path(@job)
@@ -63,11 +62,17 @@ end
         end
     end
 
+    def show 
+      @job = Job.find_by_id(params[:id])
+      redirect_to jobs_path if !@job
+    end
+  
+
     
 
     private
 
     def job_params
-        params.require(:job).permit(:title, :service, :phone, :email, :adress, :category_id, :user_id)
+        params.require(:job).permit(:title, :service, :phone, :email, :adress, :user_id)
     end
 end

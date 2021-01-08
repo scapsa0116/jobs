@@ -1,16 +1,21 @@
 index/job
 
-<ol>
+<table>
+
+<tbody>
 <% @jobs.each do |job| %>
-    <li>Company Name:   <%= job.title %></li>
-    <li>Company Service:   <%= job.service %></li>
-    <li>Category:   <%= job.category.name %></li>
-    <li>Company Adress:   <%= job.adress %></li>
-    <li>Company Phone Number:   <%= job.phone %></li>
-    <li>Company Email:   <%= job.email %></li>
-    <li><%= link_to "Edit", edit_job_path(job) %></li>
-    </ol>
-    <br><br>
-    
+    <tr>
+    <td><h3>Company Name:</h3>   <%= job.title %></td>
+    <td><h3>Company Service:</h3>   <%= job.service %></td>
+    <td><h3>Category:</h3>   <%= job.category_id %></td>
+    <td><h3>Company Adress:</h3>   <%= job.adress %></td>
+    <td><h3>Company Phone Number:</h3>   <%= job.phone %></td>
+    <td><h3>Company Email:</h3>   <%= job.email %></td>
+    <td><%= link_to "Edit", edit_job_path(job) %></td>
+    </tr>
 
     <% end %>
+
+    </tbody>
+    </table>
+    <br><br>
