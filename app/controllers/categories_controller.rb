@@ -50,7 +50,7 @@ class CategoriesController < ApplicationController
 
 
 def index
-  @categories = Category.search(params[:search])
+  
   @categories = Category.all.includes(:jobs)
 end
 
@@ -61,8 +61,8 @@ end
 def new
 end
 
-private
-  def category_params
-    params.require(:category).permit(:name, :job_id, :user_id)
-  end
+# private
+#   def category_params
+#     params.require(:category).permit(:name)
+#   end
 end

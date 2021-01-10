@@ -1,5 +1,8 @@
 index/job
 
+
+
+
 <table>
 
 <tbody>
@@ -7,11 +10,11 @@ index/job
     <tr>
     <td><h3>Company Name:</h3>   <%= job.title %></td>
     <td><h3>Company Service:</h3>   <%= job.service %></td>
-    <td><h3>Category:</h3>   <%= job.category_id %></td>
+    <td><h3>Category:</h3>   <%= job.category_id%></td>
     <td><h3>Company Adress:</h3>   <%= job.adress %></td>
     <td><h3>Company Phone Number:</h3>   <%= job.phone %></td>
     <td><h3>Company Email:</h3>   <%= job.email %></td>
-    <td><%= link_to "Edit", edit_job_path(job) %></td>
+    <td><%= link_to "Edit" , edit_job_path(job) %></td>
     </tr>
 
     <% end %>

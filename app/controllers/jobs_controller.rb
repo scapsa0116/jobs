@@ -2,22 +2,31 @@ class JobsController < ApplicationController
     
   before_action :redirect_if_not_logged_in
 
-    def index
-      if params[:user_id] && @user = User.find_by_id(params[:user_id])
-        @jobs = @user.jobs
-     else
-       @error = "That user doesn't exist" if params[:user_id]
-       @jobs = Job.includes(:category, :user)
-     end
+  #   def index
+  #     # @jobs = Job.search(params[:search])
+  #     if params[:user_id] && @user = User.find_by_id(params[:user_id])
+  #       @jobs = @user.jobs.build
+  #    else
+  #      @error = "That user doesn't exist" if params[:user_id]
+  #      @jobs = Job.includes(:category, :user)
+  #    end
  
-     @jobs = @jobs.filter(params[:job][:category_id]) if params[:job] && params[:job][:category_id] != ""
+  #    @jobs = @jobs.filter(params[:job][:category_id]) if params[:job] && params[:job][:category_id] != ""
  
-   end
+  #  end
 
   # def index 
   #   @jobs = job.where(["category LIKE ?","%#{params[:search]}"])
   # end
 
+  def index 
+    if params[:category_id]
+      category= Category.find(params[:category_id])
+      @jobs = category.jobs
+    else
+      @jobs = Job.includes(:category, :user)
+    end
+  end
   
 
   def new
@@ -35,12 +44,15 @@ end
 
 
     def create
-     
-      @job = current_user.jobs.build(job_params)
+      
+     @job = Job.new(job_params)
+      # @job = current_user.jobs.build(job_params)
+      @job.user_id = session[:user_id]
       # binding.pry
       if @job.save
-      redirect_to jobs_path
+      redirect_to job_path(@job)
       else
+        @job.build_category
        render :new
       end
   end 
@@ -53,7 +65,7 @@ end
     end
     
     def update
-         @job = Job.find_by(id: params[:id])
+      @job = Job.find_by_id(params[:id])
          redirect_to jobs_path if !@job || @job.user != current_user
         if @job.update(job_params)
           redirect_to job_path(@job)
@@ -68,11 +80,17 @@ end
     end
   
 
+    def destroy
+      @job = Job.find(params[:id])
+      @job.destroy
+      redirect_to job_path(@job)
+    end
+
     
 
     private
 
     def job_params
-        params.require(:job).permit(:title, :service, :phone, :email, :adress, :user_id)
+        params.require(:job).permit(:title, :service, :phone, :email, :adress, :user_id, :category_id)
     end
 end

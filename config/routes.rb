@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
   resources :jobs, only: [:edit, :index, :new, :show]
 
   resources :jobs do
@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     resources :jobs, shallow: true
   end
   resources :categories, only: [:index, :new, :show]
+
+  resources :categories do
+    resources :jobs
+  end
 
 end
 
