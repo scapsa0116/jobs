@@ -1,11 +1,9 @@
-<h1>Here are the reviews for <%= @jb.title%></h1>
+<h1>Here are the reviews for <%= @job.title%></h1>
 
-<% if @reviews.exists? %>
-<h3>Average Rating: <%= @reviews.average_rating%></h3>
-<% end %>
+
 
 <ul>
   <% @reviews.each do |r|%>
-    <li><strong><%= r.rating%></strong> <%=r.reviewer.firstName%> says: <%= r.description %>  </li>
+    <li><strong><%= r.description%></strong> <%=r.reviewer.firstName%> says: <%= r.description %>  </li>
   <% end %>
 </ul>

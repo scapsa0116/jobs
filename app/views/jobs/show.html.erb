@@ -3,16 +3,20 @@
 
 <h1>Your Job<h1>
 
-<h1><%= @job.title %></h1>
+<h3><%= @job.title %></h3>
 <h2>By: <%=link_to @job.user.firstName, user_path(@job.user)%> </h2>
 
-
-<h3>Category: <%= @job.category.try(:name)%></h3>
+<h2>Job Category:</h2>
+<h3><%= @job.category.try(:name)%></h3>
+<h2>This Job offers services:</h2>
+<div><h3><%= @job.service %></h3></div>
+<h2>Phone number is:</h2>
+<div><h3><%= @job.phone %></h3></div>
 <% if @job.user == current_user %>
-<h4><%= link_to "Edit Service", edit_job_path(@job)%></h4>
+<h4><%= link_to "Edit", edit_job_path(@job)%></h4>
 <% end %>
 
-<div><h3><%= @job.service %></h3></div>
+
 
 
 
@@ -20,7 +24,7 @@
 
 
 <% if !@job.reviews.empty? %>
-<p><%= link_to 'See all reviews', job_reviewss_path(@job)%></p>
+<p><%= link_to 'See all reviews', job_reviews_path(@job)%></p>
 <h4>Most Recent Comments:</h4>
 <% @job.reviews.order(update_at: :desc).limit(4).each do |c| %>
     <li>

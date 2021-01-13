@@ -2,18 +2,26 @@ index/job
 
 
 
-
-<table>
+<div>
+<table id="jobs">
 
 <tbody>
 <% @jobs.each do |job| %>
     <tr>
-    <td><h3>Company Name:</h3>   <%= job.title %></td>
-    <td><h3>Company Service:</h3>   <%= job.service %></td>
-    <td><h3>Category:</h3>   <%= job.category_id%></td>
-    <td><h3>Company Adress:</h3>   <%= job.adress %></td>
-    <td><h3>Company Phone Number:</h3>   <%= job.phone %></td>
-    <td><h3>Company Email:</h3>   <%= job.email %></td>
+    <th>Company Name</th>
+    <th>Company Service</th>
+    <th>Company Category</th>
+    <th>Company Adress</th>
+    <th>Company Phone Number</th>
+    <th>Company Email</th>
+  </tr>
+    <tr>
+    <td>   <%= job.title %></td>
+    <td>   <%= job.service %></td>
+    <td>   <%= job.category.name%></td>
+    <td>   <%= job.adress %></td>
+    <td>   <%= job.phone %></td>
+    <td>   <%= job.email %></td>
     <td><%= link_to "Edit" , edit_job_path(job) %></td>
     </tr>
 
@@ -22,3 +30,4 @@ index/job
     </tbody>
     </table>
     <br><br>
+    </div>

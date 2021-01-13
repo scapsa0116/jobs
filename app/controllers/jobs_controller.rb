@@ -2,22 +2,6 @@ class JobsController < ApplicationController
     
   before_action :redirect_if_not_logged_in
 
-  #   def index
-  #     # @jobs = Job.search(params[:search])
-  #     if params[:user_id] && @user = User.find_by_id(params[:user_id])
-  #       @jobs = @user.jobs.build
-  #    else
-  #      @error = "That user doesn't exist" if params[:user_id]
-  #      @jobs = Job.includes(:category, :user)
-  #    end
- 
-  #    @jobs = @jobs.filter(params[:job][:category_id]) if params[:job] && params[:job][:category_id] != ""
- 
-  #  end
-
-  # def index 
-  #   @jobs = job.where(["category LIKE ?","%#{params[:search]}"])
-  # end
 
   def index 
     if params[:category_id]

@@ -10,10 +10,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
   resources :jobs, only: [:edit, :index, :new, :show]
-
+  resources :reviews
   resources :jobs do
     resources :reviews
   end
+  
 
   resources :users do 
     resources :jobs, shallow: true
