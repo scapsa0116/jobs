@@ -2,6 +2,13 @@ class JobsController < ApplicationController
     
   before_action :redirect_if_not_logged_in
 
+  # def search 
+  #   if params[:search].present?
+  #     @jobs = Job.search(params[:search])
+  #   else
+  #     @jobs = Job.all
+  # end
+
 
   def index 
     if params[:category_id]
@@ -34,7 +41,7 @@ end
       @job.user_id = session[:user_id]
       # binding.pry
       if @job.save
-      redirect_to job_path(@job)
+      redirect_to job_path(@job), notice: "Job profile was successfully created."
       else
         @job.build_category
        render :new

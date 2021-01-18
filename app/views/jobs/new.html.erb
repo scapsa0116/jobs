@@ -2,10 +2,10 @@
 
 <br><div class = "container">
     <div class="title">Build Job</div>
-    </div>
+    
 
 
-<br><%= form_for(@job) do |f| %>
+<br><%= form_for @job, html: { multipart: true } do |f| %>
 
     <%= f.label "Choose a Category" %>
     <%= f.collection_select  :category_id, Category.all, :id, :name, include_blank: true%>
@@ -18,6 +18,9 @@
     </p>
 
     <br>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+    <br><br>
     <%= f.label :title %>
     <%= f.text_field :title, placeholder: "Company Name" %>
     <br><br>
@@ -37,3 +40,5 @@
     <%= f.submit %>
 
     <% end %>
+
+    </div>

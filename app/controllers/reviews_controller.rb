@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
 
     before_action :redirect_if_not_logged_in
     before_action :set_review, only: [:show, :edit, :update]
-    before_action :redirect_if_not_review_author, only: [:edit, :update]
+    before_action :redirect_if_not_review_user, only: [:edit, :update]
     before_action :check_for_logged_in, only: [:new, :create, :edit, :update]
 
 def index

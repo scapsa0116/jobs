@@ -14,8 +14,9 @@ job edit
     <%= c.text_field :name%>
   <% end %>
   </p>
-
-
+  <br>
+<%= f.label :image %><br>
+<%= f.file_field :image %> <br><br>
 <%= f.label :title %>
 <%= f.text_field :title, placeholder: "Company Name" %><br><br>
 <%= f.label :service %>

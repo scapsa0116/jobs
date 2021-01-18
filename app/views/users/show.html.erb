@@ -1,7 +1,11 @@
 Wllcome </h1>
 
+
 <br><div class = "container">
     <div class="title"><%= @user.firstName %></div>
+    <div class="title"><%= @user.lastName %></div>
+    <div class="title"><%= @user.email %></div>
+    
     </div>
 
 <br><%= link_to "Create Job Details", new_job_path %>

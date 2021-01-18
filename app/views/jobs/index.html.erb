@@ -7,6 +7,8 @@ index/job
 
 <tbody>
 <% @jobs.each do |job| %>
+
+  
     <tr>
     <th>Company Name</th>
     <th>Company Service</th>
@@ -15,16 +17,20 @@ index/job
     <th>Company Phone Number</th>
     <th>Company Email</th>
   </tr>
+  
     <tr>
+    <td> <%= image_tag job.image.url(:medium) %> </td>
     <td>   <%= job.title %></td>
     <td>   <%= job.service %></td>
     <td>   <%= job.category.name%></td>
     <td>   <%= job.adress %></td>
     <td>   <%= job.phone %></td>
     <td>   <%= job.email %></td>
+    <% if job.user == current_user%>
     <td><%= link_to "Edit" , edit_job_path(job) %></td>
+    <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
-
+    <% end %>
     <% end %>
 
     </tbody>
