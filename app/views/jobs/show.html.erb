@@ -2,7 +2,7 @@
 
 
 <h1>Your Job<h1>
-<%= image_tag @movie.image.url(:medium) %>
+<%= image_tag @job.image.url(:medium) %>
 
 <h3><%= @job.title %></h3>
 <h2>By: <%=link_to @job.user.firstName, user_path(@job.user)%> </h2>
@@ -15,8 +15,8 @@
 <div><h3><%= @job.phone %></h3></div>
 <% if @job.user == current_user %>
 <h4><%= link_to "Edit", edit_job_path(@job)%></h4>
-<%= link_to 'All Jobs', jobs_path %>
 <% end %>
+<%= link_to 'All Jobs', jobs_path %>
 
 
 

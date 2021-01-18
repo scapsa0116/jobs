@@ -82,6 +82,6 @@ end
     private
 
     def job_params
-        params.require(:job).permit(:title, :service, :phone, :email, :adress, :user_id, :category_id)
+        params.require(:job).permit(:title, :service, :phone, :email, :adress, :user_id, :category_id, :image )
     end
 end

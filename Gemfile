@@ -23,7 +23,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'nested_scaffold'
-gem 'paperclip', '~> 6.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -46,6 +45,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'shotgun'
   gem 'faker' 
+  gem 'paperclip', "~> 4.2"
+  gem 'bootstrap-sass', '~> 3.4.1'
+  gem 'sassc-rails', '>= 2.1.0'
+  gem 'jquery-rails'
 end
 
 group :test do
@@ -54,6 +57,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
