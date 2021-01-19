@@ -4,36 +4,77 @@
 <h1>Your Job<h1>
 <%= image_tag @job.image.url(:medium) %>
 
-<h3><%= @job.title %></h3>
+
 <h2>By: <%=link_to @job.user.firstName, user_path(@job.user)%> </h2>
 
-<h2>Job Category:</h2>
-<h3><%= @job.category.try(:name)%></h3>
-<h2>This Job offers services:</h2>
-<div><h3><%= @job.service %></h3></div>
-<h2>Phone number is:</h2>
-<div><h3><%= @job.phone %></h3></div>
-<% if @job.user == current_user %>
-<h4><%= link_to "Edit", edit_job_path(@job)%></h4>
-<% end %>
-<%= link_to 'All Jobs', jobs_path %>
 
 
 
 
+<div class="table-responsive">
+    <table class="table">
+    <tbody>
+    
+  <tr>
+  <td><strong>Company Name</strong></td>
+  <td>   <%= @job.title %></td>
+  </tr>
+  
+  <tr>
+  <td><strong>Company Service</strong></td>
+  <td>   <%= @job.service %></td>
+  </tr>
 
-<p><%= link_to 'Add a Review', new_job_review_path(@job) %></p>
+  <tr>
+  <td><strong>Company Category</strong></td>
+  <td>   <%= @job.category.try(:name) %></td>
+  </tr>
 
-<% if !@job.reviews.empty? %>
-<p><%= link_to 'See all reviews', job_reviews_path(@job)%></p>
-<h4>Most Recent Comments:</h4>
-<% @job.reviews.order(update_at: :desc).limit(4).each do |c| %>
-    <li>
-<strong><%= c.user.username %></strong> "<%= link_to c.description, job_review_path(@job, c) %>" at <%= c.updated_at.strftime("%I:%M %p on %m/%d/%Y") %>
-</li>
-<% end %>
+  <tr>
+  <td><strong>Company Adress</strong></td>
+  <td>   <%= @job.adress %></td>
+  </tr>
+
+  <tr>
+  <td><strong>Company Phone Number</strong></td>
+  <td>   <%= @job.phone %></td>
+  </tr>
+
+  <tr>
+  <td><strong>Company Email</strong></td>
+  <td>   <%= @job.email %></td>
+  </tr>
+
+  
+    
+
+  </tbody>
+</table>
+    </div> 
+
+    <% if @job.user == current_user %>
+    <h4><%= link_to "Edit", edit_job_path(@job) %></h4>
+    <% end %>
+    <h4><%= link_to 'All Jobs', jobs_path %></h4>
+    
+
+<br><p><%= link_to 'Add a Review', new_job_review_path(@job), class: "btn btn-danger" %></p>
 
 
-<% end %>
+<div>
+<h1 class="review_title"><%= @job.title %></h1>
+
+<% if @reviews.blank? %>
+<h3>No reviews yet</h3>
+<%= link_to "wright a Review", new_job_review_path(@job), class: "btn btn-danger" %>
+<% else %>
+<% @reviews.each do |review|%>
+  <h3><p><%= review.description %></p></h3>
+  <h5>Posted by: <%= link_to "#{review.user.firstName}", job_review_path(@job, review) %></h5>
+  <% end %>
+  <% end %>
+
+</div>
+
 
 

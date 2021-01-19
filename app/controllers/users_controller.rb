@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+    before_action :authorize_user
 
     #loading sign up form
     def new
@@ -22,8 +22,8 @@ class UsersController < ApplicationController
  
      
      def show
-        @user = User.find_by(id: params[:id])
-        redirect_to user_path(current_user) if @user != current_user
+        authorize_user
+        @user_jobs = @user.jobs
      end
  
 
@@ -32,6 +32,11 @@ class UsersController < ApplicationController
  
      def user_params
          params.require(:user).permit(:firstName, :lastName, :email, :password)
+     end
+
+     def authorize_user
+        @user = User.find(params[:id])
+        redirect_to root_url unless current_user == @user
      end
  
  end

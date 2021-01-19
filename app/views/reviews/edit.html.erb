@@ -1,0 +1,8 @@
+<h1> Editing Review</h1>
+
+<%= render 'form' %>
+
+
+<%= link_to 'Back', job_path(@job)%>|
+<%= link_to 'Delete', job_review_path(@job, @review), method: :delete, data: { confirm: 'Are you sure you want to delet it?'} %>
+

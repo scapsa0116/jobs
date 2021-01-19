@@ -1,13 +1,6 @@
-<h1>Write your Review for <%= @review.job.title %></h1>
+new/review
 
-<%= form_for [@job, @review] do |f|%>
-  <%= f.hidden_field :job_id%>
-  <div>
-    <%= f.label :description%>
-    <%= f.text_area :description%>
-  </div>
+<h1>New Review</h1>
+<%= render 'form' %>
 
-  
-  <br>
-  <%= f.submit %>
-<% end %>
+<%= link_to 'Back', job_path(@job) %>

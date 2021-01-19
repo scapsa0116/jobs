@@ -3,23 +3,28 @@ Rails.application.routes.draw do
 
   root to: "sessions#home"
   get '/signup' => 'users#new'
-  
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
-  resources :users, only: [:new, :create, :show]
   resources :jobs, only: [:edit, :index, :new, :show]
-  resources :reviews
-  resources :jobs do
-    resources :reviews
-  end
+  resources :categories, only: [:index, :new, :show]
   
 
+  resources :jobs do
+
+    collection do
+      get 'search'
+    end
+    resources :reviews, except: [:index]
+  end
+  resources :users, only: [:show]
+
+  # resources :reviews, only: [:edit, :index, :new, :show]
+  
   resources :users do 
     resources :jobs, shallow: true
   end
-  resources :categories, only: [:index, :new, :show]
 
   resources :categories do
     resources :jobs

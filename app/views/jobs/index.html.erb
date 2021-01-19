@@ -1,40 +1,70 @@
 index/job
 
-
-
-<div>
-<table id="jobs">
-
-<tbody>
-<% @jobs.each do |job| %>
-
-  
-    <tr>
-    <th>Profile Picture</th>
-    <th>Company Name</th>
-    <th>Company Service</th>
-    <th>Company Category</th>
-    <th>Company Adress</th>
-    <th>Company Phone Number</th>
-    <th>Company Email</th>
+    <div class="panel panel-default">
+    <div class="panel-body">
+    <div class="row">
+    <div class="col-md-4">
+    
+    
+    <div class="table-responsive">
+    <table class="table">
+    <tbody>
+  <% @jobs.each do |job| %>
+  <tr>
+  <td> <%= image_tag job.image.url(:medium)  %>  </td>
   </tr>
   
-    <tr>
-    <td> <%= image_tag job.image.url(:medium) %> </td>
-    <td>   <%= job.title %></td>
-    <td>   <%= job.service %></td>
-    <td>   <%= job.category.name%></td>
-    <td>   <%= job.adress %></td>
-    <td>   <%= job.phone %></td>
-    <td>   <%= job.email %></td>
+    
+  <tr>
+  <td><strong>Company Name</strong></td>
+  <td>   <%= job.title %></td>
+  </tr>
+  
+  <tr>
+  <td><strong>Company Service</strong></td>
+  <td>   <%= job.service %></td>
+  </tr>
+
+  <tr>
+  <td><strong>Company Category</strong></td>
+  <td>   <%= job.category.name%></td>
+  </tr>
+
+  <tr>
+  <td><strong>Company Adress</strong></td>
+  <td>   <%= job.adress %></td>
+  </tr>
+
+  <tr>
+  <td><strong>Company Phone Number</strong></td>
+  <td>   <%= job.phone %></td>
+  </tr>
+
+  <tr>
+  <td><strong>Company Email</strong></td>
+  <td>   <%= job.email %></td>
+  </tr>
+
+  
+  
+
+  
+    
     <% if job.user == current_user%>
-    <td><%= link_to "Edit" , edit_job_path(job) %></td>
-    <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to "Edit" , edit_job_path(job), class: "btn btn-danger" %></td>
+    <td><%= link_to 'Destroy', job, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?'  } %></td>
     </tr>
     <% end %>
-    <% end %>
+  <% end %>
 
-    </tbody>
-    </table>
-    <br><br>
+  <tr>
+  <td></td>
+  </tr>
+  
+  </tbody>
+</table>
+    </div> 
+    </div>
+    </div>
+    </div>
     </div>

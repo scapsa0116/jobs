@@ -5,8 +5,17 @@ Wllcome </h1>
     <div class="title"><%= @user.firstName %></div>
     <div class="title"><%= @user.lastName %></div>
     <div class="title"><%= @user.email %></div>
-    
+    </div><br>
+   <br><div class="row">
+    <% @user_jobs.uniq.each do |job| %>
+        <div class="col-sm-6 col-md-3">
+        <div class="thumbnails">
+        <%= link_to (image_tag job.image.url(:medium), class: 'image'), job %>
+        </div>
+        </div>
+    <% end %>
     </div>
-
+    
 <br><%= link_to "Create Job Details", new_job_path %>
+
 

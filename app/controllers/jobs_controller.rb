@@ -1,13 +1,13 @@
 class JobsController < ApplicationController
     
-  before_action :redirect_if_not_logged_in
 
-  # def search 
-  #   if params[:search].present?
-  #     @jobs = Job.search(params[:search])
-  #   else
-  #     @jobs = Job.all
-  # end
+  def search 
+    if params[:search].present?
+      @jobs = Job.search(params[:search])
+    else
+      @jobs = Job.all
+  end
+end
 
 
   def index 
@@ -59,16 +59,18 @@ end
       @job = Job.find_by_id(params[:id])
          redirect_to jobs_path if !@job || @job.user != current_user
         if @job.update(job_params)
-          redirect_to job_path(@job)
+          redirect_to job_path(@job), notice: "Job was successfully"
         else
           render :edit
         end
     end
 
     def show 
-      @job = Job.find_by_id(params[:id])
-      redirect_to jobs_path if !@job
+     @reviews = Review.where(job_id: @job.id)
     end
+    #   @job = Job.find_by_id(params[:id])
+    #   redirect_to jobs_path if !@job
+    # end
   
 
     def destroy

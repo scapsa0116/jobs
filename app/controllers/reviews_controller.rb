@@ -1,80 +1,63 @@
 class ReviewsController < ApplicationController
+    before_action :set_job
+    before_action :set_review, only: [:show, :edit, :update, :destroy]
 
-    before_action :redirect_if_not_logged_in
-    before_action :set_review, only: [:show, :edit, :update]
-    before_action :redirect_if_not_review_user, only: [:edit, :update]
-    before_action :check_for_logged_in, only: [:new, :create, :edit, :update]
-
-def index
-    # @job = Job.find_by_id(params[:job_id])
-    # if @job
-    #     @reviews = @job.reviews
-    # else
-    #     redirect_to jobs_path
-    # end
-
-    if params[:job_id] && @job = Job.find_by_id(params[:job_id])
-        @reviews = @job.reviews
-     else
-       @error = "That post doesn't exist" if params[:job_id]
-       @reviews = Review.all
-     end
-end
-
-def new
-    if params[:job_id] && @job = Job.find_by_id(params[:job_id])
-        @review = @job.reviews.build
-    else
-        @review = Review.new
-    # if params[:job_id] && @job = Job.find_by_id(params[:job_id])
-    #     @review = @job.reviews.build 
-        
-    # else
-    #     # @error = "this job service doesn't exist" if params[:job_id]
-    #     @review = Review.new
-    # end
-    end
-end
-
-    def create
-        # @job = Job.find_by_id(params[:job_id])
-        @review = current_user.reviews.build(review_params)
-        # @review.job = @job
-        if @review.save
-            redirect_to reviews_path
-        else
-
-            render :new
-        end
+    def index
+        @reviews = Review.all
     end
 
 
     def show 
-        if @review.update(review_params)
-            redirect_to review_path(review)
+        if @review.user_id == current_user.id
+            render 'show'
         else
-            render :edit
+            redirect_to job_path(@job)
         end
     end
 
 
+    def new
+        @review = Review.new
+    end
+
+    def edit 
+        if @review.user_id == current_user.id
+            render 'edit'
+        else
+            redirect_to job_path(@job)
+        end
+    end
+
+    def create
+        @review = Review.create(review_params)
+        @review.user_id = current_user.id
+        @review.job_id = @job.id
+        if @review.save
+            redirect_to @job, notice: 'Review was successfully created.'
+        else
+            render 'new'
+        end
+    end
+
     def update 
+        @review.update(review_params)
+    end
+
+    def destroy 
+        @review.destroy
     end
 
     private
     def review_params
-        params.require(:review).permit(:description, @job, @user)
+        params.require(:review).permit(:description)
     end
 
     def set_review
-        @review = Review.find_by(id: params[:id])
-        if !@review
-          flash[:message] = "Review was not found"
-          redirect_to reviews_path
-        end
-      end
-    
-      def redirect_if_not_review_author
-         redirect_to reviews_path if @review.user != current_user
-      end
+        @review = Review.find(params[:id])
+    end
+
+    def set_job
+        @job = Job.find(params[:job_id])
+    end
+      
 end

@@ -1,0 +1,12 @@
+<%= form_for [@job, @review] do |f|%>
+    <%= f.hidden_field :job_id%>
+    <div>
+      <%= f.label :description%><br>
+      <p class="text-uppercase"><%= f.text_area :description%></p>
+    </div>
+ 
+    <br>
+    <%= f.submit %>
+  <% end %><br>
+  
+  
