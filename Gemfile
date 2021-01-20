@@ -50,6 +50,10 @@ group :development do
   gem 'sassc-rails', '>= 2.1.0'
   gem 'jquery-rails'
   gem 'searchkick'
+  # gem 'tire'
+  gem 'elasticsearch-rails'
+  gem 'elasticsearch-model'
+  
 end
 
 group :test do

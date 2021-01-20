@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
-    before_action :authorize_user
 
     #loading sign up form
     def new
         @user = User.new
-        
      end
  
      # post Sign Up
@@ -24,6 +22,9 @@ class UsersController < ApplicationController
      def show
         authorize_user
         @user_jobs = @user.jobs
+        redirect_if_not_logged_in
+        @user = User.find_by_id(params[:id])
+        redirect_to '/' if !@user
      end
  
 

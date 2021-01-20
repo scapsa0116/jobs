@@ -9,11 +9,11 @@ Search
     </div>
 
 
-    <table id="categories">
+  <table id="categories">
   <% @categories.each do |category| %>
     <tr>
-    <td> <%= link_to category.name, category_path(category) %></td> 
-      </tr>
+       <td> <%= link_to category.name, category_path(category) %></td> 
+    </tr>
   <% end %>
 </table>
 

@@ -6,23 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-10.times do
-      Job.create([{
-email: Faker::Internet.email,
-phone: Faker::PhoneNumber.phone_number,
-adress: Faker::Address.street_address,
-title: Faker::Company.name,
-service: Faker::Company.industry,
-    }])
-end
-
-# 10.times do 
-#     City.create([{
-#         name: Faker::Address.city,
+# 10.times do
+#       Job.create([{
+# email: Faker::Internet.email,
+# phone: Faker::PhoneNumber.phone_number,
+# adress: Faker::Address.street_address,
+# title: Faker::Company.name,
+# service: Faker::Company.industry,
 #     }])
-
 # end
-    
+
+
     
 Category.create([
 {name: "Driver"},
@@ -39,6 +33,14 @@ Category.create([
 {name: "Consultant"},
 {name: "Suplier"},
 {name: "Others"},
-
 ])
     
+
+# Job.create([{
+#     title: "Energ Bank", 
+#     category_id: "6", 
+#     services: "banking", 
+#     phone: "+1 444 345 4565", 
+#     email: "energ@gmail.com", 
+#     adress: "34532 vasile mahu Orhei"
+# }]) 

@@ -58,7 +58,6 @@
     <h4><%= link_to 'All Jobs', jobs_path %></h4>
     
 
-<br><p><%= link_to 'Add a Review', new_job_review_path(@job), class: "btn btn-danger" %></p>
 
 
 <div>
@@ -66,8 +65,9 @@
 
 <% if @reviews.blank? %>
 <h3>No reviews yet</h3>
-<%= link_to "wright a Review", new_job_review_path(@job), class: "btn btn-danger" %>
+<br><p><%= link_to 'Add a Review', new_job_review_path(@job), class: "btn btn-danger" %></p>
 <% else %>
+
 <% @reviews.each do |review|%>
   <h3><p><%= review.description %></p></h3>
   <h5>Posted by: <%= link_to "#{review.user.firstName}", job_review_path(@job, review) %></h5>

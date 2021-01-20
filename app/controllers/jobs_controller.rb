@@ -3,7 +3,7 @@ class JobsController < ApplicationController
 
   def search 
     if params[:search].present?
-      @jobs = Job.search(params[:search])
+      @jobs = Job.search(((params[:search].present? ? params[:search] : '*')).records, load: true)
     else
       @jobs = Job.all
   end
@@ -66,11 +66,11 @@ end
     end
 
     def show 
-     @reviews = Review.where(job_id: @job.id)
+    #  @reviews = Review.where(job_id: @job.id)
+   
+      @job = Job.find_by_id(params[:id])
+      redirect_to jobs_path if !@job
     end
-    #   @job = Job.find_by_id(params[:id])
-    #   redirect_to jobs_path if !@job
-    # end
   
 
     def destroy

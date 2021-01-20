@@ -7,36 +7,39 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    
   </head>
 
-  <body>
+<body>
 
 
 
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 <ul class="nav navbar-nav">
+
 <% if logged_in? %>
 <%= link_to "All Categories", categories_path %>|
-<%= link_to "Post Your Job", user_path(current_user)%>|
-<%= link_to "Log Out", logout_path,  method: :delete%><br><br>|
+<%= link_to "Post Your Job", user_path(current_user) %>|
+<%= link_to "Log Out", logout_path,  method: :delete %><br><br>|
 <%= link_to "Your Reviews", current_user %><br>
+
+<div >
+<%= form_tag search_jobs_path, class: "navbar-from navbar-right", role: 'search', method: :get  do |f| %>
+<p>
+<%= text_field_tag :search, params[:search], class: "form-contol" %>
+<%= button_tag "Search",  class:"btn btn-default", name: nil %>
+</p>
+<% end %>
+</div>
 
 
     <% else %>
-<li><%= link_to "Sign up", signup_path %></li>
-<br><br>
-<li><%= link_to "Log in", "/signin"%></li>
+<li><%= link_to  "Sign up", signup_path, class:"btn btn-default" %></li>
+
+<li><%= link_to "Log in", "/signin", class:"btn btn-default"%></li>
   <% end %>
 </ul>
-<%= form_tag search_jobs_path, method: :get, class: "navbar-from navbar-right", role: "search" do %>
-<p>
-<%= text_field_tag :search, params[:search], class: "form-contol"%>
-<%= submit_tag "Search", name: nil, class:"btn btn-default" %>
-</p>
 
-<% end %>
+
 
 </div>
 
