@@ -2,7 +2,7 @@ class Job < ApplicationRecord
 
     # include Elasticsearch::Model
     # include Elasticsearch::Model::Callbacks
-    searchkick
+    
     
     has_many :reviews
     belongs_to :user
@@ -21,11 +21,6 @@ class Job < ApplicationRecord
     validates :title, :phone, :adress, :email, presence: true
 
 
-    def search_data
-        attributes.merge(
-            title: [title]
-        )
-        
-      end
+   
 end
 

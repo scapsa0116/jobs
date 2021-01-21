@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
+  get '/auth/google_oauth2' => 'sessions#omniauth'
+  
   root to: "sessions#home"
   get '/signup' => 'users#new'
-  get '/signin' => 'sessions#new'
-  post '/signin' => 'sessions#create'
+  # post '/signup' => 'users#create'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
 
   resources :jobs, only: [:edit, :index, :new, :show]
   resources :categories, only: [:index, :new, :show]
-  
+  resource :session, only: [:create]
 
   resources :jobs do
     collection do

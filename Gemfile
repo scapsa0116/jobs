@@ -49,10 +49,10 @@ group :development do
   gem 'bootstrap-sass', '~> 3.4.1'
   gem 'sassc-rails', '>= 2.1.0'
   gem 'jquery-rails'
-  gem 'searchkick'
-  # gem 'tire'
-  gem 'elasticsearch-rails'
-  gem 'elasticsearch-model'
+  gem 'omniauth'
+  gem 'dotenv-rails' 
+  gem 'omniauth-google-oauth2'
+  
   
 end
 

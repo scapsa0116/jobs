@@ -17,25 +17,20 @@
 <ul class="nav navbar-nav">
 
 <% if logged_in? %>
-<%= link_to "All Categories", categories_path %>|
-<%= link_to "Post Your Job", user_path(current_user) %>|
-<%= link_to "Log Out", logout_path,  method: :delete %><br><br>|
-<%= link_to "Your Reviews", current_user %><br>
+<li><%= link_to "All Categories", categories_path,class:"btn btn-default" %></li>
+<li><%= link_to "Post Your Job", user_path(current_user), class:"btn btn-default" %></li>
+<li><%= link_to 'All Jobs', jobs_path, class:"btn btn-default" %></li>
+<li><%= link_to "Your Reviews", current_user, class:"btn btn-default"  %></li>
+<li><%= link_to "Log Out", logout_path,  method: :delete, class:"btn btn-default" %></li>
 
-<div >
-<%= form_tag search_jobs_path, class: "navbar-from navbar-right", role: 'search', method: :get  do |f| %>
-<p>
-<%= text_field_tag :search, params[:search], class: "form-contol" %>
-<%= button_tag "Search",  class:"btn btn-default", name: nil %>
-</p>
-<% end %>
-</div>
 
 
     <% else %>
 <li><%= link_to  "Sign up", signup_path, class:"btn btn-default" %></li>
 
-<li><%= link_to "Log in", "/signin", class:"btn btn-default"%></li>
+<li><%= link_to "Log in", login_path, class:"btn btn-default"%></li>
+
+<li><%= link_to "Log In with Google", '/auth/google_oauth2', class:"btn btn-default" %></li>
   <% end %>
 </ul>
 

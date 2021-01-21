@@ -2,7 +2,8 @@
 
 
 <h1>Your Job<h1>
-<%= image_tag @job.image.url(:medium) %>
+
+<h2><%= image_tag @job.image.url(:medium) %></h2>
 
 
 <h2>By: <%=link_to @job.user.firstName, user_path(@job.user)%> </h2>

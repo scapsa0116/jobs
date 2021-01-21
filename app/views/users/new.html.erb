@@ -1,5 +1,5 @@
 <h1>user.new.html</h1>
-
+<div class="center" align="center">
 <h1>Sign Up</h1>
 
 <%= form_for(@user) do |f| %>
@@ -16,5 +16,7 @@
 <%= f.password_field :password %>
 <br><br>
 <%= f.submit "Submit" %>
+<br><br><button type="button"><%= link_to "Log In with Google", '/auth/google_oauth2' %></button>
 
 <% end %>
+</div>
