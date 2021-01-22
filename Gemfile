@@ -50,13 +50,14 @@ group :development do
   gem 'sassc-rails', '>= 2.1.0'
   gem 'jquery-rails'
   gem 'omniauth'
-  gem 'dotenv-rails' 
+  
   gem 'omniauth-google-oauth2'
   
   
 end
 
 group :test do
+  gem 'dotenv-rails' 
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'

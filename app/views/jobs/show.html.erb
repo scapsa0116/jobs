@@ -72,9 +72,9 @@
 <% @reviews.each do |review|%>
   <h3><p><%= review.description %></p></h3>
   <h5>Posted by: <%= link_to "#{review.user.firstName}", job_review_path(@job, review) %></h5>
+  
   <% end %>
   <% end %>
-
 </div>
 
 

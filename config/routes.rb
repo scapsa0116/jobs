@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :reviews, except: [:index]
   end
 
-  resources :users, only: [:show]
+  resources :users
 
   # resources :reviews, only: [:edit, :index, :new, :show]
   

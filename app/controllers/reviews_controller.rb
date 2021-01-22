@@ -28,16 +28,35 @@ class ReviewsController < ApplicationController
         end
     end
 
-    def create
-        @review = Review.create(review_params)
-        @review.user_id = current_user.id
-        @review.job_id = @job.id
-        if @review.save
-            redirect_to @job, notice: 'Review was successfully created.'
-        else
-            render 'new'
-        end
+#     def create
+#   #binding.pry
+#         @review = Review.create(review_params)
+#         @review.user_id = current_user.id
+#         @review.job_id = @job.id
+#         @review.save
+#         if @review.save
+#             redirect_to @job, notice: 'Review was successfully created.'
+#         else
+#             render 'new'
+#         end
+#     end
+
+
+def create
+
+    @job = Job.find(params[:job_id])
+    @review = @job.reviews.new(review_params)
+    @review.user_id = current_user.id
+    @review.save
+    if @review.save
+      redirect_to job_reviews_path(@mjob), notice: "Thanks for your review"
+    else
+      render :new
     end
+  end
+
+
+    
 
     def update 
         @review.update(review_params)
@@ -49,7 +68,7 @@ class ReviewsController < ApplicationController
 
     private
     def review_params
-        params.require(:review).permit(:description)
+        params.require(:review).permit(:description, :job_id, :user_id)
     end
 
     def set_review
