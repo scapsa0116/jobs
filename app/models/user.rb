@@ -10,10 +10,12 @@ class User < ApplicationRecord
     validates :email, presence: true 
     
 
-   
+
+
 
 
     def self.from_omniauth(auth)
+    
       where(email: auth.email).first_or_initialize do |user|
         user.email = auth.info.email
         user.password = SecureRandom.hex
