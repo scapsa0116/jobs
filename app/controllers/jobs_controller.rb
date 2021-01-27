@@ -1,21 +1,25 @@
 class JobsController < ApplicationController
     
 
-  def search 
-    if params[:search].present?
-      @jobs = Job.search(((params[:search].present? ? params[:search] : '*')).records, load: true)
-    else
-      @jobs = Job.all
-  end
-end
+#   def search 
+#     if params[:search].present?
+#       @jobs = Job.search(((params[:search].present? ? params[:search] : '*')).records, load: true)
+#     else
+#       @jobs = Job.all
+#   end
+# end
 
 
   def index 
+   
+      
     if params[:category_id]
       category= Category.find(params[:category_id])
       @jobs = category.jobs
+      @reviews= Review.all
     else
       @jobs = Job.includes(:category, :user)
+      
     end
   end
   
@@ -66,7 +70,9 @@ end
     end
 
     def show 
-    #  @reviews = Review.where(job_id: @job.id)
+     @reviews = Review.all
+    # @reviews = Review.where(job_id: @job.id)
+    
    
       @job = Job.find_by_id(params[:id])
       redirect_to jobs_path if !@job

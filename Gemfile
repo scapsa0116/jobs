@@ -39,7 +39,7 @@ gem 'paperclip', "~> 4.2"
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
-gem 'omniauth'
+gem 'omniauth', '~>1.9.1'
 
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails' 

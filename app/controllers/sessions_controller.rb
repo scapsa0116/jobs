@@ -23,25 +23,34 @@ class SessionsController < ApplicationController
      end 
 
 
-    #  def omniauth
-    #   @user = User.from_omniauth(auth)
-    #   @user.save
-    #   session[:user_id] = @user.id
-    #   redirect_to home_path
-    # end
 
-    def omniauth  #log users in with omniauth
+     def omniauth
       # binding.pry
-      user = User.from_omniauth(auth)
+      @user = User.from_omniauth(auth)
+      if @user.valid?
+        
+      @user.save
+      session[:user_id] = @user.id
+      redirect_to categories_path
+       else
+      redirect_to root_path
+         end
+     end
+   
+
+  #   def omniauth  #log users in with omniauth
       
-      if user.valid?
-          session[:user_id] = user.id
-          redirect_to new_job_path
-      else
-          flash[:message] = user.errors.full_messages.join(", ")
-          redirect_to shoes_path
-      end
-  end
+  #     user = User.from_omniauth(auth)
+      
+  #     #binding.pry
+  #     if user.save
+  #         session[:user_id] = user.id
+  #         redirect_to new_job_path
+  #     else
+  #         flash[:message] = user.errors.full_messages.join(", ")
+  #         redirect_to home_path
+  #     end
+  # end
 
   
     def destroy
@@ -56,3 +65,11 @@ class SessionsController < ApplicationController
     request.env['omniauth.auth']
   end
 end 
+
+
+
+
+
+
+ # binding.pry
+    

@@ -1,9 +1,12 @@
+<% if @job %>
 <h1>Here are the reviews for <%= @job.title%></h1>
 
-
+<% else %>
+  <h1>All the Reviews </h1>
+<% end %>
 
 <ul>
-  <% @reviews.each do |r|%>
-    <li><strong><%= r.description%></strong> <%=r.reviewer.firstName%> says: <%= r.description %>  </li>
+<% @reviews.each do |review| %>
+    <li><strong><%= review.description%></strong> <%=@review.job.title%> says: <%= r.description %>  </li>
   <% end %>
 </ul>

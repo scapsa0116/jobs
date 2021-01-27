@@ -5,10 +5,12 @@
 
 <h2><%= image_tag @job.image.url(:medium) %></h2>
 
-
+<%if @job.user.firstName.blank?%>
+  <%= link_to @job.user.email, user_path(@job.user) %>
+<%else%>
 <h2>By: <%=link_to @job.user.firstName, user_path(@job.user)%> </h2>
 
-
+<%end%>
 
 
 
@@ -64,16 +66,25 @@
 <div>
 <h1 class="review_title"><%= @job.title %></h1>
 
-<% if @reviews.blank? %>
-<h3>No reviews yet</h3>
+
+
 <br><p><%= link_to 'Add a Review', new_job_review_path(@job), class: "btn btn-danger" %></p>
-<% else %>
+
 
 <% @reviews.each do |review|%>
+  <% if review.job.title == @job.title %>
   <h3><p><%= review.description %></p></h3>
+  <h3><p><%= review.job.title %></p></h3>
+  <%  if review.user.firstName.blank? %>
+  <h5>Posted by: <%= link_to "#{review.user.email}", job_review_path(@job, review) %></h5>
+
+<%else%>
   <h5>Posted by: <%= link_to "#{review.user.firstName}", job_review_path(@job, review) %></h5>
+
+  <%end%>
+<%end%>
   
-  <% end %>
+
   <% end %>
 </div>
 

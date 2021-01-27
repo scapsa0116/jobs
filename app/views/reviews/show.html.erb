@@ -1,8 +1,11 @@
 <h1>show.reviews</h1>
-<h2>Comment:</h2>
+<strong><h2>Comment:</h2><strong>
 <h3><%= @review.description %></h3>
-<h2>User:</h2>
+<strong><h2>User:</h2></strong>
+<%if @review.user.firstName.blank? %>
+<h3> <%= @review.user.email %> </h3>
+<% else %>
 <h3> <%= @review.user.firstName %> </h3>
+<% end %>
 
-<%= link_to 'Edit', edit_job_review_path(@job, @review) %>|
-<%= link_to 'Back', job_path(@job) %>
+

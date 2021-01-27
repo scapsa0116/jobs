@@ -1,23 +1,32 @@
 class ReviewsController < ApplicationController
-    before_action :set_job
+    # before_action :set_job
     before_action :set_review, only: [:show, :edit, :update, :destroy]
 
     def index
-        @reviews = Review.all
+        if @job = Job.find_by_id(params[:job_id])
+            @review = @job.reviews.build
+          else
+            @review = Review.new
+          end
     end
 
 
     def show 
-        if @review.user_id == current_user.id
-            render 'show'
-        else
-            redirect_to job_path(@job)
-        end
+        # if @review.user_id == current_user.id
+        #     render 'show'
+        # else
+        #     redirect_to job_path(@job)
+        # end
+        @review = Review.find_by_id(params[:id])
     end
 
 
     def new
-        @review = Review.new
+        if @job = Job.find_by_id(params[:job_id])
+            @review = @job.reviews.build
+          else
+            @review = Review.new
+          end
     end
 
     def edit 
@@ -42,21 +51,29 @@ class ReviewsController < ApplicationController
 #     end
 
 
-def create
+# def create
 
-    @job = Job.find(params[:job_id])
-    @review = @job.reviews.new(review_params)
-    @review.user_id = current_user.id
-    @review.save
-    if @review.save
-      redirect_to job_reviews_path(@mjob), notice: "Thanks for your review"
-    else
-      render :new
+#     @job = Job.find(params[:job_id])
+#     @review = @job.reviews.new(review_params)
+#     @review.user_id = current_user.id
+#     @review.save
+#     if @review.save
+#       redirect_to job_reviews_path(@mjob), notice: "Thanks for your review"
+#     else
+#       render :new
+#     end
+#   end
+
+
+    def create 
+        # binding.pry
+        @review = current_user.reviews.build(review_params)
+        if @review.save
+          redirect_to review_path(@review)
+        else
+          render :new
+        end
     end
-  end
-
-
-    
 
     def update 
         @review.update(review_params)

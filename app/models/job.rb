@@ -4,7 +4,7 @@ class Job < ApplicationRecord
     # include Elasticsearch::Model::Callbacks
     
     
-    has_many :reviews, dependent: :destroy
+    has_many :reviews
     belongs_to :user
     has_many :users, through: :reviews
     belongs_to :category

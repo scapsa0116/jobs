@@ -8,14 +8,16 @@ Wllcome </h1>
     </div><br>
    <br><div class="row">
     <% @user_jobs.uniq.each do |job| %>
-        <div class="col-sm-6 col-md-3">
-        <div class="thumbnails">
-        <%= link_to (image_tag job.image.url(:medium), class: 'image'), job %>
-        </div>
+        
+        <div class="img-thumbnail">
+        <ul class="row">
+        <li class="listt"><%= link_to (image_tag job.image.url(:medium), class: 'image'), job %></li>
+        </ul>
+        
         </div>
     <% end %>
     </div>
     
-<br><%= link_to "Create Job Details", new_job_path %>
+<br><%= link_to "Create Job Details", new_job_path, class: "btn btn-danger" %>
 
 
