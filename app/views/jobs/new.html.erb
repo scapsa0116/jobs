@@ -1,4 +1,3 @@
-<h3>job new.html</h3>
 
 <br><div class = "container">
     <div class="title">Build Job</div>
@@ -11,11 +10,11 @@
     <%= f.collection_select  :category_id, Category.all, :id, :name, include_blank: true%>
 
 
-    <p>Or create a new category:
+    <p>Or create a new category:</p>
       <%= f.fields_for :category do |c|%>
       <%= c.text_field :name%>
       <% end %>
-    </p>
+    
 
     <br>
     <%= f.label :image %><br>

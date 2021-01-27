@@ -44,10 +44,6 @@ class UsersController < ApplicationController
         redirect_to root_url unless current_user == @user
      end
 
-    #  def auth
-    #     request.env['omniauth.auth']
-    #   end
-    
  
  end
 

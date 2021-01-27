@@ -15,7 +15,10 @@ class Job < ApplicationRecord
     validates :image, presence: true
 
 
-    
+    def category_attributes=(attributes)
+        self.category = Category.find_or_create_by(attributes) if !attributes['name'].empty?
+        self.category
+      end
 
 
     validates :title, :phone, :adress, :email, presence: true

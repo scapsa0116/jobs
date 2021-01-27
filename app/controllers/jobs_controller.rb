@@ -11,39 +11,27 @@ class JobsController < ApplicationController
 
 
   def index 
-   
-      
     if params[:category_id]
       category= Category.find(params[:category_id])
       @jobs = category.jobs
       @reviews= Review.all
     else
       @jobs = Job.includes(:category, :user)
-      
     end
   end
   
 
   def new
-    
-    if params[:user_id] && @user = User.find_by_id(params[:user_id])
-        @job = @user.jobs.build
-    else
-        @job = Job.new
-    end
-    # binding.pry
-       @job.build_category 
-       
-end
+    @job = Job.new
+    @job.build_category 
+  end
 
 
 
     def create
-      
+    # binding.pry
      @job = Job.new(job_params)
-      # @job = current_user.jobs.build(job_params)
       @job.user_id = session[:user_id]
-      # binding.pry
       if @job.save
       redirect_to job_path(@job), notice: "Job profile was successfully created."
       else
@@ -71,9 +59,8 @@ end
 
     def show 
      @reviews = Review.all
+     @category = Category.all
     # @reviews = Review.where(job_id: @job.id)
-    
-   
       @job = Job.find_by_id(params[:id])
       redirect_to jobs_path if !@job
     end
@@ -90,6 +77,6 @@ end
     private
 
     def job_params
-        params.require(:job).permit(:title, :service, :phone, :email, :adress, :user_id, :category_id, :image )
+        params.require(:job).permit(:title, :service, :phone, :email, :adress, :user_id, :category_id, :image, category_attributes: [:name] )
     end
 end

@@ -15,7 +15,6 @@ class SessionsController < ApplicationController
         @user = User.find_by(email: params[:user][:email])
         if @user && @user.authenticate(params[:user][:password])
            session[:user_id] = @user.id 
-        #    redirect_to user_path(@user)
         redirect_to categories_path
         else
             redirect_to '/login'
@@ -25,7 +24,6 @@ class SessionsController < ApplicationController
 
 
      def omniauth
-      # binding.pry
       @user = User.from_omniauth(auth)
       if @user.valid?
         
@@ -36,23 +34,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
          end
      end
-   
-
-  #   def omniauth  #log users in with omniauth
-      
-  #     user = User.from_omniauth(auth)
-      
-  #     #binding.pry
-  #     if user.save
-  #         session[:user_id] = user.id
-  #         redirect_to new_job_path
-  #     else
-  #         flash[:message] = user.errors.full_messages.join(", ")
-  #         redirect_to home_path
-  #     end
-  # end
-
-  
+     
     def destroy
         session.clear
         redirect_to '/'
@@ -71,5 +53,5 @@ end
 
 
 
- # binding.pry
+ 
     
