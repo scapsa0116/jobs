@@ -3,7 +3,7 @@ class Job < ApplicationRecord
     # include Elasticsearch::Model
     # include Elasticsearch::Model::Callbacks
     
-    
+    belongs_to :recruiter
     has_many :reviews
     belongs_to :user
     has_many :users, through: :reviews
