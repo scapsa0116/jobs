@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     resources :jobs
   end
 
+  get 'search', to:"categories#search"
+
 end
 
 

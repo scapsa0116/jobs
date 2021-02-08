@@ -5,6 +5,9 @@ def index
   
   @categories = Category.all.includes(:jobs)
 end
+ def search 
+  @categories = Category.where("name LIKE ?","%" + params[:q]+"%")
+ end
 
 def show
    @category = Category.find_by_id(params[:id])

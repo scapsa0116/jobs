@@ -20,6 +20,9 @@ class JobsController < ApplicationController
     end
   end
   
+  # def search 
+  #   @jobs = Job.where("title LIKE ?","%" + params[:q]+"%")
+  #  end
 
   def new
     @job = Job.new
@@ -29,7 +32,7 @@ class JobsController < ApplicationController
 
 
     def create
-    # binding.pry
+  #binding.pry
      @job = Job.new(job_params)
       @job.user_id = session[:user_id]
       if @job.save

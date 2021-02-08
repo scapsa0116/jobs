@@ -75,10 +75,10 @@
   <h3><p><%= review.description %></p></h3>
   <h3><p><%= review.job.title %></p></h3>
   <%  if review.user.firstName.blank? %>
-  <h5>Posted by: <%= link_to "#{review.user.email}", job_review_path(@job, review) %></h5>
+  <h5>Posted by: <%= link_to "#{review.user.email}", job_reviews_path(@job, review) %></h5>
 
 <%else%>
-  <h5>Posted by: <%= link_to "#{review.user.firstName}", job_review_path(@job, review) %></h5>
+  <h5>Posted by: <%= link_to "#{review.user.firstName}", job_reviews_path(@job, review) %></h5>
 
   <%end%>
 <%end%>

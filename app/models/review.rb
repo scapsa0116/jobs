@@ -6,5 +6,6 @@ class Review < ApplicationRecord
 
     validates :job, uniqueness: { scope: :user, message: "has already been reviewed by you"  }
 
+    # scope :positive, -> { where("review > 2")}
 
 end
